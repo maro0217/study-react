@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Footer } from '../components/Footer'
 import { Headline } from '../components/Headline'
 import { Links } from '../components/Links'
+import { Main } from '../components/Main'
 
 import styles from '../styles/Home.module.css'
 
@@ -15,11 +16,7 @@ export default function About() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Headline title="about page"page="about"/>
-        <Links />
-
-      </main>
+      <Main page="about"/>
 
       <Footer />
 

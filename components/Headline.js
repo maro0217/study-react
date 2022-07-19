@@ -8,12 +8,10 @@ export function Headline(props) {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/{props.page}.js</code>
+          Get started by editing {props.children}
         </p>
     </div>
-    // React.Fragmentの省略形
-    // 親コンポーネントから見て、子コンポーネントから１つの値を返すと決めていた方が混乱しない。
+
 
   );
 }
