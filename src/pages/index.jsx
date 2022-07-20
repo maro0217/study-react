@@ -1,15 +1,16 @@
 import Head from 'next/head'
-import {useCallback, useEffect} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import { Footer } from 'src/components/Footer'
 import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
 import styles from 'src/styles/Home.module.css'
-import {useState} from 'react'
 
 export default function Home() {
 
   //配列の分割代入（記述の簡略化）（）内は初期値　
   const [count, setCount] = useState(1)
+  const [text, setText] = useState("")
+  const [isShow, steIsShow] = useState(true)
 
 
 //第二引数に何も入れなかったら再度生成されないので、fooは１のまま更新されない
@@ -20,6 +21,12 @@ export default function Home() {
     }
 
   }, [count])
+
+  const showChange = useCallback(() => {
+    steIsShow(isShow => !isShow
+    )
+
+  }, [])
 
   
   
@@ -36,6 +43,11 @@ export default function Home() {
 
     }
   }, [count]);
+
+  const textInput = useCallback((e) => {
+    setText(e.target.value);
+
+  })
   
 
   return (
@@ -46,10 +58,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <h1>{count}</h1>
+      {/* return文内でif文は使えない→三項演算子 */}
+      {isShow ? <h1>{count}</h1> : null}
       <button href='/about' onClick={handleClick}>
         ボタン
       </button>
+      <button onClick={showChange}>
+        {isShow ? "非表示" : "表示"}
+      </button>
+      <input 
+        type="text"
+        value={text}
+        onChange={textInput}
+      />
 
       <Main page="index"/>
 
