@@ -5,6 +5,12 @@ import { Main } from 'src/components/Main'
 import styles from 'src/styles/Home.module.css'
 
 export default function Home() {
+
+  const handleClick = useCallback((e) => {
+    console.log(e.target)
+    alert(123);
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,6 +19,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+      <a href='/about' onClick={handleClick}>
+        ボタン
+      </a>
 
       <Main page="index"/>
 
