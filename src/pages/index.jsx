@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import {useCallback, useEffect} from 'react'
 import { Footer } from 'src/components/Footer'
 import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
@@ -6,10 +7,25 @@ import styles from 'src/styles/Home.module.css'
 
 export default function Home() {
 
-  const handleClick = useCallback((e) => {
-    console.log(e.target)
-    alert(123);
-  }, [])
+  const handleClick = useCallback(
+    (e) => {
+      console.log(e.target)
+      alert(123);
+    },
+    []
+  )
+  
+  //Homeコンポーネントがマウントされるときの処理（レンダリング）
+  useEffect(() => {
+    document.body.style.backgroundColor = "lightblue"
+
+    //アンマウント時の処理
+    return () => {
+    document.body.style.backgroundColor = ""
+
+    }
+  }, []);
+  
 
   return (
     <div className={styles.container}>
@@ -19,9 +35,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <a href='/about' onClick={handleClick}>
+      {/* <a href='/about' onClick={handleClick}>
         ボタン
-      </a>
+      </a> */}
 
       <Main page="index"/>
 
