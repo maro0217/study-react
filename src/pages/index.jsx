@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {useEffect} from 'react'
+import {useCallback, useEffect} from 'react'
 import { Footer } from 'src/components/Footer'
 import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
@@ -9,26 +9,33 @@ import {useState} from 'react'
 export default function Home() {
 
   //配列の分割代入（記述の簡略化）（）内は初期値　
-  const [foo, setFoo] = useState(1)
+  const [count, setCount] = useState(1)
 
 
-  const handleClick = (e) => {
-    setFoo(foo => foo + 1);
+//第二引数に何も入れなかったら再度生成されないので、fooは１のまま更新されない
+  const handleClick = useCallback(() => {
+    if (count < 10) {
+      setCount(count => count + 1);
+      setCount(count => count + 1);
+    }
 
-  }
+  }, [count])
 
   
   
   //Homeコンポーネントがマウントされるときの処理（レンダリング）
   useEffect(() => {
+    console.log(`マウント時： ${count}`);
     document.body.style.backgroundColor = "lightblue"
 
-    //アンマウント時の処理
+  //   //アンマウント時の処理（Clean up function）
     return () => {
+      console.log(`アンマウント時： ${count}`);
+
     document.body.style.backgroundColor = ""
 
     }
-  }, []);
+  }, [count]);
   
 
   return (
@@ -39,7 +46,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <h1>{foo}</h1>
+      <h1>{count}</h1>
       <button href='/about' onClick={handleClick}>
         ボタン
       </button>
