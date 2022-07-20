@@ -8,7 +8,7 @@ export function Headline(props) {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing {props.children}
+          アイテムの数： {props.children}個
         </p>
     </div>
 
