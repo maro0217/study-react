@@ -12,13 +12,9 @@ import styles from 'src/styles/Home.module.css'
 
 
 
-export default function Home() {
-  const {count, isShow, handleClick, showChange} = useCounter();
-  const  {text, array, handleAdd, textInput} = useInputArray();
+export default function Home(props) {
+  const {count, isShow, handleClick, showChange, text, array, handleAdd, textInput} = props;
 
-  useBgLightBlue();
-  
-  
 
   return (
     <div className={styles.container}>
