@@ -1,4 +1,4 @@
-import styles from './Link.module.css'
+import styles from 'src/components/Links/Link.module.css'
 
 const ITEMS = [
   {
