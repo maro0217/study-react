@@ -10,8 +10,6 @@ import styles from 'src/styles/Home.module.css'
 
 
 export default function Home(props) {
-  const {count, doubleCount, isShow, handleClick, showChange, text, array, handleAdd, textInput} = props;
-
 
   return (
     <div className={styles.container}>
@@ -22,22 +20,22 @@ export default function Home(props) {
       </Head>
       <Header className={styles.header}/>
 
-      {isShow ? <h1>{doubleCount}</h1> : null}
-      <button href='/about' onClick={handleClick}>
+      {props.isShow ? <h1>{props.doubleCount}</h1> : null}
+      <button href='/about' onClick={props.handleClick}>
         ボタン
       </button>
-      <button onClick={showChange}>
-        {isShow ? "非表示" : "表示"}
+      <button onClick={props.showChange}>
+        {props.isShow ? "非表示" : "表示"}
       </button>
 
       <input 
         type="text"
-        value={text}
-        onChange={textInput}
+        value={props.text}
+        onChange={props.textInput}
       />
-      <button onClick={handleAdd}>追加</button>
+      <button onClick={props.handleAdd}>追加</button>
       <ul>
-        {array.map(item => {
+        {props.array.map(item => {
           return (
           <li key={item}>{item}</li>
           )

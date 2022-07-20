@@ -5,10 +5,7 @@ import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
 import styles from 'src/styles/Home.module.css'
 
-export default function About({count, isShow, handleClick, showChange, text, array, handleAdd, textInput}) {
-
-  
-
+const About = (props) => {
 
   return (
     <div className={styles.container}>
@@ -25,3 +22,5 @@ export default function About({count, isShow, handleClick, showChange, text, arr
     </div>
   )
 }
+
+export default About

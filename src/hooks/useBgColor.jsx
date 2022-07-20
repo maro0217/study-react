@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import {useEffect, useState} from 'react'
+import {useEffect, useMemo, useState} from 'react'
 
 
 export const useBgColor = () => {
