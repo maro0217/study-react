@@ -1,6 +1,6 @@
 import 'src/styles/globals.css'
 import Head from "next/head"
-import { useBgLightBlue } from 'src/hooks/useBgLightBlue'
+import { useBgLightBlue } from 'src/hooks/useBgColor'
 import { useCounter } from 'src/hooks/useCounter'
 import { useInputArray } from 'src/hooks/useInputArray'
 
