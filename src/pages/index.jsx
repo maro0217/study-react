@@ -10,7 +10,7 @@ import styles from 'src/styles/Home.module.css'
 
 
 export default function Home(props) {
-  const {count, isShow, handleClick, showChange, text, array, handleAdd, textInput} = props;
+  const {count, doubleCount, isShow, handleClick, showChange, text, array, handleAdd, textInput} = props;
 
 
   return (
@@ -22,7 +22,7 @@ export default function Home(props) {
       </Head>
       <Header className={styles.header}/>
 
-      {isShow ? <h1>{count}</h1> : null}
+      {isShow ? <h1>{doubleCount}</h1> : null}
       <button href='/about' onClick={handleClick}>
         ボタン
       </button>
