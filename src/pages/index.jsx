@@ -1,19 +1,23 @@
 import Head from 'next/head'
-import {useCallback, useEffect} from 'react'
+import {useEffect} from 'react'
 import { Footer } from 'src/components/Footer'
 import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
 import styles from 'src/styles/Home.module.css'
+import {useState} from 'react'
 
 export default function Home() {
 
-  const handleClick = useCallback(
-    (e) => {
-      console.log(e.target)
-      alert(123);
-    },
-    []
-  )
+  //配列の分割代入（記述の簡略化）（）内は初期値　
+  const [foo, setFoo] = useState(1)
+
+
+  const handleClick = (e) => {
+    setFoo(foo => foo + 1);
+
+  }
+
+  
   
   //Homeコンポーネントがマウントされるときの処理（レンダリング）
   useEffect(() => {
@@ -35,9 +39,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      {/* <a href='/about' onClick={handleClick}>
+      <h1>{foo}</h1>
+      <button href='/about' onClick={handleClick}>
         ボタン
-      </a> */}
+      </button>
 
       <Main page="index"/>
 
