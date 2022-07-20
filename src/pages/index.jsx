@@ -1,62 +1,23 @@
 import Head from 'next/head'
-import {useCallback, useEffect, useState} from 'react'
 import { Footer } from 'src/components/Footer'
 import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
+import { useBgLightBlue } from 'src/hooks/useBgLightBlue'
+import { useCounter } from 'src/hooks/useCounter'
+import { useInputArray } from 'src/hooks/useInputArray'
 import styles from 'src/styles/Home.module.css'
 
+
+
+
+
+
 export default function Home() {
+  const {count, isShow, handleClick, showChange} = useCounter();
+  const  {text, array, handleAdd, textInput} = useInputArray();
 
-  //配列の分割代入（記述の簡略化）（）内は初期値　
-  const [count, setCount] = useState(1)
-  const [text, setText] = useState("")
-  const [isShow, setIsShow] = useState(true)
-  const [array, setArray] = useState([])
-
-
-//第二引数に何も入れなかったら再度生成されないので、fooは１のまま更新されない
-  const handleClick = useCallback(() => {
-    if (count < 10) {
-      setCount(count => count + 1);
-      setCount(count => count + 1);
-    }
-
-  }, [count])
-
-  const showChange = useCallback(() => {
-    setIsShow(previsShow => !previsShow)
-
-  }, [])
-
+  useBgLightBlue();
   
-  
-  useEffect(() => {
-    console.log(`マウント時： ${count}`);
-    document.body.style.backgroundColor = "lightblue"
-
-    return () => {
-      console.log(`アンマウント時： ${count}`);
-
-    document.body.style.backgroundColor = ""
-
-    }
-  }, [count]);
-
-  const textInput = useCallback((e) => {
-    setText(e.target.value);
-
-  })
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) =>{
-      if(prevArray.some(item => item === text)) {
-        alert("同じテキストがすでに存在します")
-        return prevArray;
-      }
-      const newArray = [...prevArray, text]
-      return newArray;
-    } )
-  }, [text])
   
 
   return (
@@ -67,7 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header className={styles.header}/>
-      {/* return文内でif文は使えない→三項演算子 */}
+
       {isShow ? <h1>{count}</h1> : null}
       <button href='/about' onClick={handleClick}>
         ボタン
@@ -75,6 +36,7 @@ export default function Home() {
       <button onClick={showChange}>
         {isShow ? "非表示" : "表示"}
       </button>
+
       <input 
         type="text"
         value={text}

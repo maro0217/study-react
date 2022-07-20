@@ -3,10 +3,20 @@ import Image from 'next/image'
 import { Footer } from 'src/components/Footer'
 import { Header } from 'src/components/Header'
 import { Main } from 'src/components/Main'
+import { useBgLightBlue } from 'src/hooks/useBgLightBlue'
+import { useCounter } from 'src/hooks/useCounter'
+import { useInputArray } from 'src/hooks/useInputArray'
 
 import styles from 'src/styles/Home.module.css'
 
 export default function About() {
+  const {count, isShow, handleClick, showChange} = useCounter();
+  const  {text, array, handleAdd, textInput} = useInputArray();
+
+  useBgLightBlue();
+  
+
+
   return (
     <div className={styles.container}>
       <Head>
