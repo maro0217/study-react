@@ -1,5 +1,6 @@
 import 'src/styles/globals.css'
 import Head from "next/head"
+import { Layout } from 'src/components/Layout'
 
 
 
@@ -12,8 +13,9 @@ const MyApp = ({ Component, pageProps }) => {
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {/* pagesの親みたいなもの。propsを渡したら各ページにpropsが渡される */}
-        <Component {...pageProps}/>
+        <Layout>
+          <Component {...pageProps}/>
+        </Layout>
       </>
       )
 }
