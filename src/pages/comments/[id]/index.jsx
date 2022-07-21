@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import { Header } from 'src/components/Header'
-import { Post } from 'src/components/Post';
+import { Comment } from 'src/components/Comment';
 
 
 
-const PostId = () => {
+const CommentId = () => {
 
     return (
       <div>
@@ -14,10 +14,9 @@ const PostId = () => {
         </Head>
         <Header/>
   
-        <Post/>
+        <Comment/>
       </div>
     )
   }
 
-  export default PostId
-  
+  export default CommentId
