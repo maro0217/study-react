@@ -1,14 +1,9 @@
 import Head from 'next/head'
 import { Header } from 'src/components/Header'
-import { Posts } from 'src/components/Posts'
+import { Posts as PostsComponent } from 'src/components/Posts'
 import styles from 'src/styles/Home.module.css'
 
-
-
-
-
-
-export default function Home(props) {
+export default function PostsId() {
 
   return (
     <div className={styles.container}>
@@ -19,7 +14,7 @@ export default function Home(props) {
       </Head>
       <Header className={styles.header}/>
 
-      <Posts/>
+      <PostsComponent/>
     </div>
   )
 }
