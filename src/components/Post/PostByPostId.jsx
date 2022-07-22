@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { fetcher } from "src/utils/fetcher"
 import useSWR from "swr"
 
@@ -17,6 +18,10 @@ export const PostByPostId = (props) => {
           }
     
     return (
-        <div>{data.body}</div>
+        <div>
+            <Link href={`/posts/{data.id}`}>
+                <a>{data?.title}</a>
+            </Link>
+        </div>
     )
 }
