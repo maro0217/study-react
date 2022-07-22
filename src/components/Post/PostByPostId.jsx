@@ -1,11 +1,12 @@
 import Link from "next/link"
+import { API_URL } from "src/utils/const"
 import { fetcher } from "src/utils/fetcher"
 import useSWR from "swr"
 
 export const PostByPostId = (props) => {
     const {data, error} =  useSWR(
         props.id
-         ? `https://jsonplaceholder.typicode.com/posts/${props.id}`
+         ? `${API_URL}/posts/${props.id}`
          : null)
 
         if(!data && !error) {

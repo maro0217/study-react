@@ -1,4 +1,5 @@
 import { useRouter } from "next/router"
+import { API_URL } from "src/utils/const"
 import { fetcher } from "src/utils/fetcher"
 import useSWRImmutable from "swr/immutable"
 
@@ -13,7 +14,7 @@ export const useFetchArray = (url) => {
     
 }
 
-const API_URL = "https://jsonplaceholder.typicode.com"
+
 
 export const usePosts = () => {
     return useFetchArray(`${API_URL}/posts`);
