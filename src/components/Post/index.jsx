@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { CommentsByPostId } from 'src/components/Comments/CommentsByPostId';
 import { UserByUserId } from 'src/components/User/UserByUserId';
-import { usePost } from 'src/hooks/usePost'
+import { usePost } from 'src/hooks/useFetchData'
 
 
 
