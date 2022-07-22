@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { PostByPostId } from 'src/components/Post/PostByPostId';
 import { useComment } from 'src/hooks/useFetchData';
 
@@ -15,14 +14,10 @@ export const Comment = () => {
 
   return (
         <div>
-            <Head>
-                <title>{data?.id}</title>
-            </Head>
-            <h1>{data?.body}</h1>
-            {data.body ? (<p>Created by {data.name}</p>) : null}
-            <h3>Original Feed</h3>
+            {data.body ? (<p className='text-lg'>Created by {data.name}</p>) : null}
+            <h1 className='text-3xl font-bold'>{data?.body}</h1>
+            <h2 className='text-xl font-bold mt-20'>Original Feed</h2>
             <PostByPostId id={data.postId} />
-
         </div>
     )
 }

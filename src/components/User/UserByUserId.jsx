@@ -17,6 +17,6 @@ export const UserByUserId = (props) => {
           }
     
     return (
-        <div>Created by {user.name}</div>
+        <div className="text-lg">Created by {user.name}</div>
     )
 }
