@@ -2,9 +2,10 @@ import Head from 'next/head'
 import { Header } from 'src/components/Header'
 import { Comment } from 'src/components/Comment';
 import { SWRConfig } from 'swr';
+import { comment } from 'postcss';
 
 export const getStaticPaths = async() => {
-  const comments = await fetch("https://jsonplaceholder.typicode.com/comments");
+  const comments = await fetch("https://jsonplaceholder.typicode.com/comments?_limit=10");
   const commentsData = await comments.json();
   const paths = commentsData.map((comment) => ({
     params: {id: comment.id.toString()}
@@ -12,21 +13,29 @@ export const getStaticPaths = async() => {
 
   return {
     paths,
-    fallback: false
+    fallback: "blocking"
   }
 };
 
+//SSRと似たような挙動
+//SG化されていないページはSSRのようにデータが取れるまで何も表示されない
 
 export const getStaticProps = async (ctx) => {
   const { id } = ctx.params;
   // ユーザー一覧の取得
   const COMMENTS_API_URL = `https://jsonplaceholder.typicode.com/comments${id}`;
-  const comments = await fetch(COMMENTS_API_URL)
-  const commentsData = await comments.json();
+  const comment = await fetch(COMMENTS_API_URL);
+
+  if(!comment.ok) {
+    return {
+      notFound: true,
+    };
+  }
+  const commentData = await comment.json();
   return {
     props: {
       fallback: {
-        [COMMENTS_API_URL]: commentsData,
+        [COMMENTS_API_URL]: commentData,
       }
     },
   }
@@ -34,7 +43,11 @@ export const getStaticProps = async (ctx) => {
 
 
 const CommentId = (props) => {
-  const { fallback } = props
+  const { fallback } = props;
+//SG化されるまでユーザーに何かしら表示する
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
 
     return (
       <div>
