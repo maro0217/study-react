@@ -1,4 +1,7 @@
 {
     "javascript.preferences.importModuleSpecifier": "non-relative",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+        "strings": true
+      }
 }
