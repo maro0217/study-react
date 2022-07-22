@@ -6,7 +6,7 @@ import { comment } from 'postcss';
 import { API_URL } from 'src/utils/const';
 
 export const getStaticPaths = async() => {
-  const comments = await fetch(`${API_URL}}/comments?_limit=10`);
+  const comments = await fetch(`${API_URL}/comments`);
   const commentsData = await comments.json();
   const paths = commentsData.map((comment) => ({
     params: {id: comment.id.toString()}
@@ -23,22 +23,23 @@ export const getStaticPaths = async() => {
 
 export const getStaticProps = async (ctx) => {
   const { id } = ctx.params;
-  // ユーザー一覧の取得
-  const COMMENTS_API_URL = `${API_URL}/comments${id}`;
-  const comment = await fetch(COMMENTS_API_URL);
-
+  const COMMENT_API_URL = `${API_URL}/comments/${id}`;
+  const comment = await fetch(COMMENT_API_URL);
+  console.log(comment);
   if(!comment.ok) {
     return {
       notFound: true,
+      revalidate: 1
     };
   }
   const commentData = await comment.json();
   return {
     props: {
       fallback: {
-        [COMMENTS_API_URL]: commentData,
-      }
+        [COMMENT_API_URL]: commentData,
+      },
     },
+    revalidate: 1,
   }
 };
 
