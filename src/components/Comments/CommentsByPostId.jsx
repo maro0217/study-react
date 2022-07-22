@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { useComments } from "src/hooks/useFetchArray";
 
+const { useCommentByPostId } = require("src/hooks/useFetchArray");
 
-export const Comments = () => {
-    const {data: comments, error: commentError, isLoading, isEmpty} = useComments();
+export const CommentsByPostId = (props) => {
+    const {data: comments, error, isLoading, isEmpty} = useCommentByPostId(props.id)
 
     if(isLoading) {
         return <div>ローディング中です</div>
       }
-    if(commentError) {
+    if(error) {
     return <div>{commentError.message}</div>
     }
     if(isEmpty) {
@@ -28,4 +28,8 @@ export const Comments = () => {
             })}
         </ol>
     )
+
 };
+
+
+

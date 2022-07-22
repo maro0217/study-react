@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { usePost } from 'src/hooks/usePost'
 import { useUser } from 'src/hooks/useUser';
 
 

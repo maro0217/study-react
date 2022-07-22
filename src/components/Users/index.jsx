@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useUsers } from "src/hooks/useFetchArray";
 
 
-export const Users = (props) => {
-    const {users, userError, isLoading, isEmpty} = useUsers();
+export const Users = () => {
+    const {data: users, error: userError, isLoading, isEmpty} = useUsers();
 
     if(isLoading) {
         return <div>ローディング中です</div>

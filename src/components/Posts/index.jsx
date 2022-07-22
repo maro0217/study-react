@@ -3,7 +3,7 @@ import { usePosts } from 'src/hooks/useFetchArray';
 
 
 
-export const Posts = (props) => {
+export const Posts = () => {
   const {data, error, isLoading, isEmpty} = usePosts();
   if(isLoading) {
     return <div>ローディング中です</div>
