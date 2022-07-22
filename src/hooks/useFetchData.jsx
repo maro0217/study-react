@@ -1,11 +1,10 @@
 import { useRouter } from "next/router"
-import { fetcher } from "src/utils/fetcher"
-import useSWR from "swr"
+import useSWRImmutable from "swr/immutable"
 
 export const useFetchArray = (url) => {
     const router = useRouter();
     const PRIVATE_URL = url + router.query.id;
-    const {data, error} = useSWR(PRIVATE_URL)
+    const {data, error} = useSWRImmutable(PRIVATE_URL)
     return {
         data,
         error,

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { PostsByUserId } from 'src/components/Posts/PostsByUserId';
-import { usePost, useUser } from 'src/hooks/useFetchData';
+import { useUser } from 'src/hooks/useFetchData';
 
 
 
