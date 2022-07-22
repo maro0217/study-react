@@ -3,8 +3,8 @@ import { Header } from 'src/components/Header'
 import { Users as UsersComponent } from 'src/components/Users'
 import { SWRConfig } from 'swr';
 
-export const getServerSideProps = async (ctx) => {
-  const { id } = ctx.query;
+export const getServerSideProps = async () => {
+  // const { id } = ctx.query;
   // ユーザー一覧の取得
   const USERS_API_URL = `https://jsonplaceholder.typicode.com/users`;
   const users = await fetch(USERS_API_URL)
