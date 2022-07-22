@@ -1,10 +1,12 @@
 import Head from 'next/head';
-import { useUser } from 'src/hooks/useUser';
+import { PostsByUserId } from 'src/components/Posts/PostsByUserId';
+import { usePost, useUser } from 'src/hooks/useFetchData';
+
 
 
 
 export const User = () => {
-  const {user, post, error, isLoading} = useUser();
+  const {data, error, isLoading} = useUser();
 
   if(isLoading) {
     return <div>ローディング中です</div>
@@ -16,10 +18,12 @@ export const User = () => {
   return (
         <div>
             <Head>
-                <title>{user?.name}</title>
+                <title>{data?.name}</title>
             </Head>
-            <h1>{user?.name}</h1>
-            <p>{post?.body}</p>
+            <h1>{data?.name}</h1>
+
+
+            <PostsByUserId id={data.id}/>
         </div>
     )
 }
