@@ -5,8 +5,7 @@ export const UserByUserId = (props) => {
     const {data: user, error} =  useSWR(
         props.id
          ? `https://jsonplaceholder.typicode.com/users/${props.id}`
-         : null,
-        fetcher)
+         : null)
 
         if(!user && !error) {
             return <div>ローディング中です</div>

@@ -6,8 +6,7 @@ export const PostByPostId = (props) => {
     const {data, error} =  useSWR(
         props.id
          ? `https://jsonplaceholder.typicode.com/posts/${props.id}`
-         : null,
-        fetcher)
+         : null)
 
         if(!data && !error) {
             return <div>ローディング中です</div>

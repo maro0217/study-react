@@ -5,7 +5,7 @@ import useSWR from "swr"
 export const useFetchArray = (url) => {
     const router = useRouter();
     const PRIVATE_URL = url + router.query.id;
-    const {data, error} = useSWR(PRIVATE_URL, fetcher)
+    const {data, error} = useSWR(PRIVATE_URL)
     return {
         data,
         error,
