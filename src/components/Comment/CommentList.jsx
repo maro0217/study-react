@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { useComments } from "src/hooks/useFetchArray";
+import { useFetchArray } from "src/hooks/useFetchArray";
+import { API_URL } from "src/utils/const";
 
 
 
 
-export const Comments = () => {
-    const {data: comments, error: commentError, isLoading, isEmpty} = useComments();
+export const CommentList = () => {
+    const {data, error, isLoading, isEmpty} = useFetchArray(`${API_URL}/comments`);
 
     if(isLoading) {
         return <div>ローディング中です</div>
       }
-    if(commentError) {
-    return <div>{commentError.message}</div>
+    if(error) {
+    return <div>{error.message}</div>
     }
     if(isEmpty) {
     return <div>データは空です</div>
@@ -19,7 +20,7 @@ export const Comments = () => {
 
     return (
         <ul className="space-y-2">
-            {comments.map((comment) => {
+            {data.map((comment) => {
                 return (
                     <li key={comment.id} className="border-b pb-2">
                         <Link href={`/comments/${comment.id}`} prefetch={false}>

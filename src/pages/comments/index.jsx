@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import { Header } from 'src/components/Header'
-import { Comments as CommentsComponent } from 'src/components/Comments'
+import { CommentList, Comments as CommentsComponent } from 'src/components/Comment/CommentList'
 import { SWRConfig } from 'swr';
 import { API_URL } from 'src/utils/const';
 
@@ -29,9 +28,8 @@ const CommentsId =(props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SWRConfig value={{ fallback }}>
-        <Header/>
 
-        <CommentsComponent/>
+        <CommentList/>
       </SWRConfig>
 
     </div>

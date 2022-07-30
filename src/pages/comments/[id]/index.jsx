@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import { Header } from 'src/components/Header'
-import { Comment } from 'src/components/Comment';
+import { CommentDetail } from 'src/components/Comment/CommentDetail';
 import { SWRConfig } from 'swr';
 import { comment } from 'postcss';
 import { API_URL } from 'src/utils/const';
+import { useRouter } from 'next/router';
 
 export const getStaticPaths = async() => {
   const comments = await fetch(`${API_URL}/comments`);
@@ -46,6 +46,8 @@ export const getStaticProps = async (ctx) => {
 
 const CommentId = (props) => {
   const { fallback } = props;
+  const router = useRouter();
+
 //SG化されるまでユーザーに何かしら表示する
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -58,9 +60,8 @@ const CommentId = (props) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <SWRConfig value={{ fallback }}>
-          <Header/>
     
-          <Comment/>
+          <CommentDetail/>
           </SWRConfig>
 
       </div>

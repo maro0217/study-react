@@ -1,15 +1,11 @@
 import Link from "next/link"
+import { useFetch } from "src/hooks/useFetch"
 import { API_URL } from "src/utils/const"
-import { fetcher } from "src/utils/fetcher"
-import useSWR from "swr"
 
-export const PostByPostId = (props) => {
-    const {data, error} =  useSWR(
-        props.id
-         ? `${API_URL}/posts/${props.id}`
-         : null)
+export const PostTitleByCommentId = (props) => {
+    const {data, error, isLoading} = useFetch(props.id ? `${API_URL}/posts/${props.id}`: null);
 
-        if(!data && !error) {
+        if(isLoading) {
             return <div>ローディング中です</div>
           }
 
